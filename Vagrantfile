@@ -31,15 +31,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         chef.cookbooks_path = 'cookbooks'
 
         chef.json = {
+            :project => {
+                :name => name
+            },
             :run_list => %w{
                 nodejs
                 mongodb
-            },
-            :nodejs => {
-                :install_method => 'package',
-                :version => '0.10.28',
-                :npm => '1.4.13'
+                angry-hobo::npm_installation
             }
+            # ,
+            # :nodejs => {
+            #     :install_method => 'package',
+            #     :version => '0.10.28',
+            #     :npm => '1.4.13'
+            # }
         }
     end
 end
