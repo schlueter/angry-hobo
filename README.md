@@ -24,4 +24,8 @@ Add the following line to your hosts file:
 
 `192.168.123.123 angry-hobo.local`
 
-Run the application by changing into the bin/ directory and running ./www with sudo permissions (it runs on port 80).
+Run the application by changing into the bin/ directory and running:
+
+`DEBUG=angry-hobo && sudo ./www` (Replacing 'angry-hobo' with your project's name)
+
+You can reach me at zahid@zmhr.me with questions and comments :)
