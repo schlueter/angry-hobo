@@ -24,7 +24,7 @@ Add the following line to your hosts file:
 
 `192.168.123.123 angry-hobo.local`
 
-Run the application by changing into the bin/ directory and running:
+SSH into the Vagrant VM with `vagrant ssh` and then run the application by changing into the */home/vagrant/workspace/angry-hobo/bin/* directory with `cd ~/workspace/angry-hobo/bin` and running:
 
 `DEBUG=angry-hobo && sudo ./www` (Replacing 'angry-hobo' with your project's name)
 
