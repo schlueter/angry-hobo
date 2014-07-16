@@ -38,13 +38,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 nodejs
                 mongodb
                 angry-hobo::npm_installation
+            },
+            :nodejs => {
+                :install_method => 'package',
+                :version => '0.10.28',
+                :npm => '1.4.13'
             }
-            # ,
-            # :nodejs => {
-            #     :install_method => 'package',
-            #     :version => '0.10.28',
-            #     :npm => '1.4.13'
-            # }
         }
     end
 end
