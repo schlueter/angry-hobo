@@ -2,7 +2,7 @@ name = 'angry-hobo'
 ip = '192.168.123.123'
 box = 'trusty64'
 box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
-hostname = "#{name}.local"
+hostname = "local.#{name}"
 
 VAGRANTFILE_API_VERSION = "2"
 

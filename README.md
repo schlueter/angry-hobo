@@ -12,11 +12,13 @@ Run `vagrant  up` to bring up your machine and run the initial vagrant provision
 
 Add the following line to your hosts file:
 
-`192.168.123.123 angry-hobo.local` (Replacing 'angry-hobo' with your project's name)
+`192.168.123.123 local.angry-hobo` (Replacing 'angry-hobo' with your project's name)
 
 SSH into the Vagrant VM with `vagrant ssh` and then run the application by changing into the */home/vagrant/workspace/angry-hobo/bin/* directory with `cd ~/workspace/angry-hobo/bin` and running:
 
 `DEBUG=angry-hobo && sudo ./www` (Replacing 'angry-hobo' with your project's name)
+
+Visit http://local.angry-hobo and you'll see your webapp running!
 
 ### Help
 
