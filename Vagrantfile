@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = 'saucy64'
     config.vm.box_url = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-13.10_chef-provisionerless.box'
 
+    config.berkshelf.berksfile_path = './Berksfile'
     config.omnibus.chef_version = :latest
 
     config.vm.provider :virtualbox do |vb|
@@ -31,7 +32,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision :chef_solo do |chef|
         chef.custom_config_path = 'ssl_fix.chef'
-        chef.cookbooks_path = 'cookbooks'
 
         chef.run_list = [
             'nodejs',
