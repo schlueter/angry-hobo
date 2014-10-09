@@ -1,43 +1,47 @@
-name = 'angry-hobo'
-ip = '192.168.123.123'
-box = 'trusty64'
-box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
-hostname = "local.#{name}"
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
-VAGRANTFILE_API_VERSION = "2"
+NAME = 'angry-hobo'
+
+# See http://docs.vagrantup.com/v2/vagrantfile/version.html
+# for explanation of API version
+VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = box
-    config.vm.box_url = box_url
+    config.vm.box = 'saucy64'
+    config.vm.box_url = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-13.10_chef-provisionerless.box'
+
+    config.omnibus.chef_version = :latest
 
     config.vm.provider :virtualbox do |vb|
-        vb.name = name
+        vb.name = NAME
     end
 
-    config.vm.network :private_network, ip: ip
+    config.vm.network :private_network, ip: '192.168.123.123'
 
-    config.vm.hostname = hostname
+    config.vm.hostname = "#{NAME}.local"
 
     config.vm.synced_folder(
         '.',
-        "/home/vagrant/workspace/#{name}",
+        "/home/vagrant/workspace/#{NAME}",
         :owner => 'vagrant',
         :mount_options => ['dmode=775']
     )
 
     config.vm.provision :chef_solo do |chef|
-        chef.custom_config_path = "ssl_fix.chef"
+        chef.custom_config_path = 'ssl_fix.chef'
         chef.cookbooks_path = 'cookbooks'
+
+        chef.run_list = [
+            'nodejs',
+            'mongodb',
+            'angry-hobo::npm_installation'
+        ]
 
         chef.json = {
             :project => {
-                :name => name
-            },
-            :run_list => %w{
-                nodejs
-                mongodb
-                angry-hobo::npm_installation
+                :name => NAME
             },
             :nodejs => {
                 :install_method => 'package',
